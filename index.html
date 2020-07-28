@@ -9,12 +9,171 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/FileSaver.js"></script>
     <script src="js/html2canvas.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/RGBConverter.js"></script>
 </head>
 <body>
     <header>
-        <h1>Block Creater</h1>      
+        <h1>Block Creater</h1>
+        <div>
+            <label>whiteSpace : </label><input type="number" id="b-padding" value ="1" />
+            <label>width : </label><input type="number" id="b-width" value ="30" />
+            <label>height: </label><input type="number" id="b-height" value ="30" />
+            <button onclick="setSize();">setSize</button>
+            <button onclick="downloadAll('tetris-block');">DownloadAll</button>
+        </div>
     </header>
 
+    <section>
+        <!-- block 1 -->
+        <article>
+            <div class ="head">
+                <label>block1</label>
+                <label>color: <input id ="color1" type ="color" value =""></label>
+                <label id ="rgb1">RGB:</label>
+                <label id ="hex1">HEX:</label>
+                <span class ="btnDownload" onclick='download("block1.png");'>Download</span> 
+            </div>
+            <div class ="imgDiv" id="imgDiv1">
+                <div class ="block" id ="block1"></div>
+            </div>
+        </article>
+
+        <!-- block 2 -->
+        <article>
+            <div class ="head">
+                <label>block2</label>
+                <label>color: <input id ="color2" type ="color" value =""></label>
+                <label id ="rgb2">RGB:</label>
+                <label id ="hex2">HEX:</label>
+                <span class ="btnDownload" onclick='download("block2.png");'>Download</span> 
+            </div>
+            <div class ="imgDiv" id="imgDiv2">
+                <div class ="block" id ="block2"></div>
+            </div>
+        </article>
+
+        <!-- block 3 -->
+        <article>
+            <div class ="head">
+                <label>block4</label>
+                <label>color: <input id ="color3" type ="color" value =""></label>
+                <label id ="rgb3">RGB:</label>
+                <label id ="hex3">HEX:</label>
+                <span class ="btnDownload" onclick='download("block3.png");'>Download</span> 
+            </div>
+            <div class ="imgDiv" id="imgDiv3">
+                <div class ="block" id ="block3"></div>
+            </div>
+        </article>
+
+        <!-- block 4 -->
+        <article>
+            <div class ="head">
+                <label>block4</label>
+                <label>color: <input id ="color4" type ="color" value =""></label>
+                <label id ="rgb4">RGB:</label>
+                <label id ="hex4">HEX:</label>
+                <span class ="btnDownload" onclick='download("block4.png");'>Download</span> 
+            </div>
+            <div class ="imgDiv" id="imgDiv4">
+                <div class ="block" id ="block4"></div>
+            </div>
+        </article>    
+
+        <!-- block 5 -->
+        <article>
+            <div class ="head">
+                <label>block5</label>
+                <label>color: <input id ="color5" type ="color" value =""></label>
+                <label id ="rgb5">RGB:</label>
+                <label id ="hex5">HEX:</label>
+                <span class ="btnDownload" onclick='download("block5.png");'>Download</span> 
+            </div>
+            <div class ="imgDiv" id="imgDiv5">
+                <div class ="block" id ="block5"></div>
+            </div>
+        </article>
+
+        <!-- block 6 -->
+        <article>
+            <div class ="head">
+                <label>block6</label>
+                <label>color: <input id ="color6" type ="color" value =""></label>
+                <label id ="rgb6">RGB:</label>
+                <label id ="hex6">HEX:</label>
+                <span class ="btnDownload" onclick='download("block6.png");'>Download</span> 
+            </div>
+            <div class ="imgDiv" id="imgDiv6">
+                <div class ="block" id ="block6"></div>
+            </div>
+        </article>
+    </section>
+
+  
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            
+            setSize();
+
+            for(let i = 1 ; i <= 6; i++ ){
+                var color = $('#block' + i).css("background-color");
+                var hex = rgbToHex(color);
+                 console.log (color + ", " + hex);
+                 $('#color' + i).val(hex);
+                 $('#rgb' + i).text(color);
+                 $('#hex' + i).text(hex);
+            }
+        });
+
+       
+                
+        for(let i = 1 ; i <= 6; i++ ){
+            $('#color' + i).change(function(){
+                var color = $('#color'+ i).val();
+                $('#block' + i).css("background", color)
+
+                $('#rgb' + i).text(hexToRgb(color));
+                 $('#hex' + i).text(color);
+
+            });
+        }
+    
+        function download(filename) {
+            const num = filename.replace(/[^0-9]/g, "");
+            // console.log(num);
+            
+            html2canvas(document.querySelector('#imgDiv'+num), {
+                useCORS: true, 
+                onrendered: function(canvas) {
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, filename);
+                    });
+                }
+            });
+        }
+    
+     
+        function setSize(){
+            var width = $('#b-width').val() + "px";
+            var height = $('#b-height').val() + "px";  
+            var padding = $('#b-padding').val() + "px";      
+            $('.block').css({"width": width ,"height": height });
+            $('.imgDiv').css("padding",padding);
+        }
+    
+        function downloadAll(base){
+            for(let i = 1; i <= 6; i ++){
+                html2canvas(document.querySelector('#imgDiv'+ i), {
+                useCORS: true, 
+                onrendered: function(canvas) {
+                    canvas.toBlob(function(blob) {
+                        saveAs(blob, base + i +".png");
+                    });
+                }
+            });
+            }
+        }
+        </script>
 </body>
 </html>   
