@@ -1,0 +1,79 @@
+@charset 'utf-8';
+
+body{
+    margin: 0;
+    padding : 0;
+    margin-left: 15px;
+}
+header{
+    width: auto;
+    padding: 5px;
+    border-bottom: 3px solid #333;
+    margin-bottom: 15px;
+}
+header h1{
+    font-size: 24px;
+    display: inline;
+}
+header button{
+    height: 40px;
+    background: #eee;
+    font-size: larger;
+    border-radius: 15px;
+    cursor: pointer;
+}
+header button:last-of-type{
+    background: plum;
+}
+
+article .head{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #eee;
+}
+article label{
+    font-weight: 600;
+    padding-right: 15px;
+    border-right: 1px solid #555;
+}
+article .btnDownload{
+    cursor: pointer;
+}
+article .btnDownload:hover{
+    color:red;
+}
+
+.imgDiv{
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+
+    /* 블록이 너무 딱딱 붙으면 구릴것 같으므로 */
+    padding: 1px;  
+}
+
+/* width,height 블록크기 */
+.block{   
+    border-radius: 6px;
+    border: 2px solid #000;
+}
+
+#block1{ background-color: #fa5252; }
+#block2{ background-color: #1864ab;}
+#block3{ background-color: #38d9a9;}
+#block4{ background-color: #ffd43b;}
+#block5{ background-color: #d9480f;}
+#block6{ background-color: #da77f2}
+
+input{
+    width: 50px;
+    font-size: large;
+    background: lemonchiffon;
+}
+
+input:first-of-type {
+    background: #fff;
+    width: 40px;
+}
